@@ -88,9 +88,16 @@ static Node *parse_input(const char *fname, Node ***leaves_order_out, size_t *nl
         leaves_order[leaves_cnt++] = n;
     }
     fclose(f);
-    if (sz != 1) { fprintf(stderr, "malformed input: final stack size %zu\n", sz); return NULL; }
+    if (sz != 1) {
+        fprintf(stderr, "malformed input: final stack size %zu\n", sz);
+        free(stack);
+        free(leaves_order);
+        return NULL;
+    }
+    Node *root = stack[0];
+    free(stack);
     *leaves_order_out = leaves_order; *nleaves_out = leaves_cnt;
-    return stack[0];
+    return root;
 }
 
 // combine two nodes candidates into parent based on cut type
@@ -98,7 +105,9 @@ static int cand_compare(const void *pa, const void *pb) {
     const Cand *a = pa; const Cand *b = pb;
     if (a->w != b->w) return a->w < b->w ? -1 : 1;
     if (a->h != b->h) return a->h < b->h ? -1 : 1;
-    if (a->area < b->area) return -1; if (a->area > b->area) return 1; return 0;
+    if (a->area < b->area) return -1;
+    if (a->area > b->area) return 1;
+    return 0;
 }
 
 static void combine_node(Node *parent) {
