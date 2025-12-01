@@ -1,0 +1,15 @@
+==3121381== Memcheck, a memory error detector
+==3121381== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3121381== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==3121381== Command: ./pa2 examples/8.txt out1.dim out1.pck out2.dim out2.pck
+==3121381== Parent PID: 1054313
+==3121381== 
+==3121381== 
+==3121381== HEAP SUMMARY:
+==3121381==     in use at exit: 0 bytes in 0 blocks
+==3121381==   total heap usage: 56 allocs, 56 frees, 72,160 bytes allocated
+==3121381== 
+==3121381== All heap blocks were freed -- no leaks are possible
+==3121381== 
+==3121381== For lists of detected and suppressed errors, rerun with: -s
+==3121381== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
